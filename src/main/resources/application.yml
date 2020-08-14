@@ -1,0 +1,39 @@
+server:
+  port: 8899
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.65.100:3306/test_db?characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      # 每次启动都初始化quartz相关表
+     initialize-schema: always
+     schema: classpath:schema/tables_mysql.sql
+    properties:
+      # 命名空间
+      org.quartz.scheduler.instanceName: ClusterQuartz
+      # 集群id
+      org.quartz.scheduler.instanceId: AUTO
+      #数据保存方式为持久化
+      org.quartz.jobStore.class: org.quartz.impl.jdbcjobstore.JobStoreTX
+      org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+      org.quartz.jobStore.tablePrefix: qrtz_
+      org.quartz.jobStore.isClustered: true
+      org.quartz.jobStore.clusterCheckinInterval: 20000
+      org.quartz.jobStore.maxMisfiresToHandleAtATime: 1
+      #容许的最大作业延长时间
+      org.quartz.jobStore.misfireThreshold: 120000
+      #这能助于防止某些数据库在高负荷和长事物时的锁超时。
+      org.quartz.jobStore.txIsolationLevelSerializable: true
+
+mybatis-plus:
+  # 如果是放在src/main/java目录下 classpath:/com/yourpackage/*/mapper/*Mapper.xml
+  # 如果是放在resource目录 classpath:/mapper/*Mapper.xml
+  mapper-locations: classpath:mapper/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.example.demo.domain
+logging:
+  level:
+    com.exmaple.demo: debug
