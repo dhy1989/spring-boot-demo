@@ -8,31 +8,31 @@ spring:
   quartz:
     job-store-type: jdbc
     jdbc:
-      # Ã¿´ÎÆô¶¯¶¼³õÊ¼»¯quartzÏà¹Ø±í
+      # æ¯æ¬¡å¯åŠ¨éƒ½åˆå§‹åŒ–quartzç›¸å…³è¡¨
      initialize-schema: always
      schema: classpath:schema/tables_mysql.sql
     properties:
-      # ÃüÃû¿Õ¼ä
+      # å‘½åç©ºé—´
       org.quartz.scheduler.instanceName: ClusterQuartz
-      # ¼¯Èºid
+      # é›†ç¾¤id
       org.quartz.scheduler.instanceId: AUTO
-      #Êı¾İ±£´æ·½Ê½Îª³Ö¾Ã»¯
+      #æ•°æ®ä¿å­˜æ–¹å¼ä¸ºæŒä¹…åŒ–
       org.quartz.jobStore.class: org.quartz.impl.jdbcjobstore.JobStoreTX
       org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
       org.quartz.jobStore.tablePrefix: qrtz_
       org.quartz.jobStore.isClustered: true
       org.quartz.jobStore.clusterCheckinInterval: 20000
       org.quartz.jobStore.maxMisfiresToHandleAtATime: 1
-      #ÈİĞíµÄ×î´ó×÷ÒµÑÓ³¤Ê±¼ä
+      #å®¹è®¸çš„æœ€å¤§ä½œä¸šå»¶é•¿æ—¶é—´
       org.quartz.jobStore.misfireThreshold: 120000
-      #ÕâÄÜÖúÓÚ·ÀÖ¹Ä³Ğ©Êı¾İ¿âÔÚ¸ß¸ººÉºÍ³¤ÊÂÎïÊ±µÄËø³¬Ê±¡£
+      #è¿™èƒ½åŠ©äºé˜²æ­¢æŸäº›æ•°æ®åº“åœ¨é«˜è´Ÿè·å’Œé•¿äº‹ç‰©æ—¶çš„é”è¶…æ—¶ã€‚
       org.quartz.jobStore.txIsolationLevelSerializable: true
 
 mybatis-plus:
-  # Èç¹ûÊÇ·ÅÔÚsrc/main/javaÄ¿Â¼ÏÂ classpath:/com/yourpackage/*/mapper/*Mapper.xml
-  # Èç¹ûÊÇ·ÅÔÚresourceÄ¿Â¼ classpath:/mapper/*Mapper.xml
+  # å¦‚æœæ˜¯æ”¾åœ¨src/main/javaç›®å½•ä¸‹ classpath:/com/yourpackage/*/mapper/*Mapper.xml
+  # å¦‚æœæ˜¯æ”¾åœ¨resourceç›®å½• classpath:/mapper/*Mapper.xml
   mapper-locations: classpath:mapper/*.xml
-  #ÊµÌåÉ¨Ãè£¬¶à¸öpackageÓÃ¶ººÅ»òÕß·ÖºÅ·Ö¸ô
+  #å®ä½“æ‰«æï¼Œå¤šä¸ªpackageç”¨é€—å·æˆ–è€…åˆ†å·åˆ†éš”
   typeAliasesPackage: com.example.demo.domain
 logging:
   level:
