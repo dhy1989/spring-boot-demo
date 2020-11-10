@@ -2,7 +2,7 @@ server:
   port: 8899
 spring:
   datasource:
-    url: jdbc:mysql://192.168.65.100:3306/test_db?characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://192.168.23.200:3306/test_db?characterEncoding=utf8&useSSL=false
     username: dhy
     password: 123456
   quartz:
@@ -28,7 +28,7 @@ spring:
       org.quartz.jobStore.txIsolationLevelSerializable: true
   redis:
     port: 6379
-    host: 192.168.65.100
+    host: 192.168.23.200
     jedis:
       pool:
         max-active: 50
